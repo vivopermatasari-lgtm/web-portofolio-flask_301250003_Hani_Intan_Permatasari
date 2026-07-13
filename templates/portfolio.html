@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Portofolio - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="portfolio">
+    <div class="container">
+        <h1 class="section-title">Portofolio</h1>
+        <p class="section-description">Berikut adalah beberapa proyek yang saya kerjakan selama belajar pengembangan web.</p>
+
+        <div class="projects-grid">
+            <!-- Placeholder project cards -->
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Project Thumbnail" class="project-img">
+                <div class="project-info">
+                    <h3 class="project-title">Kalkulator Flask</h3>
+                    <p class="project-description">Aplikasi kalkulator berbasis web menggunakan Python Flask, mendukung operasi aritmatika dasar dengan antarmuka sederhana dan responsif.</p>
+                    <div class="project-tech">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/vivopermatasari-lgtm/kalkulator-flask_301250003_Hani_Intan_Permatasari" class="btn btn-sm" target="_blank">GitHub</a>
+                        <a href="https://kalkulator-flask-301250003-hani-int.vercel.app" class="btn btn-sm" target="_blank">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Project Thumbnail" class="project-img">
+                <div class="project-info">
+                    <h3 class="project-title">Web Portofolio Dinamis (proyek ini)</h3>
+                    <p class="project-description">Aplikasi web portofolio pribadi dengan dashboard admin untuk mengelola konten proyek, profil, dan pesan masuk secara dinamis tanpa perlu mengubah kode program.</p>
+                    <div class="project-tech">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">SQLite</span>
+                        <span class="skill-tag">Jinja2</span>
+                        <span class="skill-tag">Flask-SQLAlchemy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-sm" target="_blank">GitHub</a>
+                        <a href="#" class="btn btn-sm" target="_blank">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more project cards as needed -->
+        </div>
+    </div>
+</section>
+{% endblock %}

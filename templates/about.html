@@ -5,27 +5,32 @@
 {% block content %}
 <section class="about">
     <div class="container">
-        <h1 class="section-title">Tentang Saya</h1>
+        <h2 class="section-title">Tentang Saya</h2>
         <div class="about-content">
+            <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil" class="profile-img about-img">
             <div class="about-text">
-                <p>Nama: Hani Intan Permatasari</p>
-                <p>Profesi: Mahasiswa Informatika | Aspiring Web Developer</p>
-                <p>Saya merupakan mahasiswa informatika yang antusias dalam pengembangan web menggunakan Flask dan teknologi terkait. Minat saya termasuk pengembangan backend, desain UI/ yang responsif, dan pengelolaan basis data.</p>
-                <p>Saat ini saya sedang belajar Flask untuk membangun aplikasi web dinamis seperti portofolio ini, yang memungkinkan saya mengelola konten melalui dashboard admin tanpa harus mengubah kode program secara manual.</p>
-            </div>
-            <div class="about-image">
-                <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil Hani" class="profile-img">
+                <p>Hai, nama saya <strong>Hani Intan Permatasari</strong>. Saya adalah mahasiswa Informatika yang saat ini sedang menempuh pendidikan di tingkat sarjana. Minat saya berada di bidang pengembangan web, khususnya menggunakan framework Flask untuk membangun aplikasi web yang dinamis dan responsif.</p>
+                <p>Selain pemrograman, saya juga senang belajar tentang desain UI/UX, basis data, dan teknologi terkait. Saya percaya bahwa kombinasi antara logika pemrograman dan estetika desain dapat menciptakan pengalaman pengguna yang baik.</p>
+                <p>Dalam proyek portofolio ini, saya mencoba mengaplikasikan pengetahuan yang saya peroleh dari mata kuliah Pengantar Pemrograman dan mata kuliah terkait lainnya. Semoga portofolio ini dapat memberikan gambaran tentang kemampuan dan minat saya dalam pengembangan web.</p>
+                <a href="{{ url_for('portfolio') }}" class="btn mt-md">Lihat Portofolio Saya</a>
             </div>
         </div>
+    </div>
+</section>
 
-        <h2 class="section-title mt-lg">Skill Saya</h2>
-        <div class="skill-tags">
-            <!-- Placeholder skill tags; will be populated from database later -->
+<section class="skills">
+    <div class="container">
+        <h2 class="section-title">Keterampilan Utama</h2>
+        <div class="skills-grid">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">Flask</span>
             <span class="skill-tag">HTML/CSS</span>
             <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Jinja2</span>
+            <span class="skill-tag">Flask-SQLAlchemy</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">VS Code</span>
         </div>
     </div>
 </section>
