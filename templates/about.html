@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Tentang Saya - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="about">
+    <div class="container">
+        <h1 class="section-title">Tentang Saya</h1>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Nama: Hani Intan Permatasari</p>
+                <p>Profesi: Mahasiswa Informatika | Aspiring Web Developer</p>
+                <p>Saya merupakan mahasiswa informatika yang antusias dalam pengembangan web menggunakan Flask dan teknologi terkait. Minat saya termasuk pengembangan backend, desain UI/ yang responsif, dan pengelolaan basis data.</p>
+                <p>Saat ini saya sedang belajar Flask untuk membangun aplikasi web dinamis seperti portofolio ini, yang memungkinkan saya mengelola konten melalui dashboard admin tanpa harus mengubah kode program secara manual.</p>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil Hani" class="profile-img">
+            </div>
+        </div>
+
+        <h2 class="section-title mt-lg">Skill Saya</h2>
+        <div class="skill-tags">
+            <!-- Placeholder skill tags; will be populated from database later -->
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+        </div>
+    </div>
+</section>
+{% endblock %}
