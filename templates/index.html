@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Beranda - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<header class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil" class="profile-img">
+            <h1>Hani Intan Permatasari</h1>
+            <p class="tagline">Mahasiswa Informatika | Aspirant Web Developer</p>
+            <p class="about-short">Saya merupakan mahasiswa informatika yang antusias dalam pengembangan web menggunakan Flask dan teknologi terkait.</p>
+            <a href="{{ url_for('about') }}" class="btn">Tentang Saya</a>
+        </div>
+    </div>
+</header>
+
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">Tentang Saya</h2>
+        <p>Singkat tentang latar belakang, minat, dan tujuan karier saya.</p>
+        <a href="{{ url_for('about') }}" class="btn btn-secondary">Selengkapnya</a>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="section-title">Proyek Terkini</h2>
+        <div class="projects">
+            <!-- Placeholder for project cards -->
+            <p>Proyek akan ditampilkan di sini setelah data diisi dari database.</p>
+            <a href="{{ url_for('portfolio') }}" class="btn">Lihat Portofolio</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
