@@ -8,9 +8,12 @@ def create_app(config_class=Config):
 
     db.init_app(app)
 
-    # Register blueprints here (will be created later)
+    # Register blueprints
     from routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    from dashboard import dashboard as dashboard_blueprint
+    app.register_blueprint(dashboard_blueprint)
 
     # Create database tables if they don't exist
     with app.app_context():

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="container">
+        <h1 class="section-title">Dashboard Admin</h1>
+        <div class="dashboard-summary">
+            <div class="summary-card">
+                <h3>Total Proyek</h3>
+                <p class="big-number">0</p>
+            </div>
+            <div class="summary-card">
+                <h3>Pesan Belum Dibaca</h3>
+                <p class="big-number">0</p>
+            </div>
+            <div class="summary-card">
+                <h3>Pengunjung Hari Ini</h3>
+                <p class="big-number">0</p>
+            </p>
+            </div>
+        </div>
+
+        <div class="dashboard-nav">
+            <a href="{{ url_for('dashboard.projects') }}" class="nav-btn">Kelola Proyek</a>
+            <a href="{{ url_for('dashboard.profile') }}" class="nav-btn">Edit Profil</a>
+            <a href="{{ url_for('dashboard.messages') }}" class="nav-btn">Kotak Masuk</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

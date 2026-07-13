@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Masuk - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="login">
+    <div class="container">
+        <div class="login-card">
+            <h2 class="section-title text-center">Masuk ke Dashboard</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="username" class="form-label">Nama Pengguna</label>
+                    <input type="text" id="username" name="username" class="form-input" required placeholder="Masukkan nama pengguna">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Kata Sandi</label>
+                    <input type="password" id="password" name="password" class="form-input" required placeholder="Masukkan kata sandi">
+                </div>
+                <button type="submit" class="btn btn-block mt-md">Masuk</button>
+            </form>
+            <p class="text-center mt-sm">
+                Belum memiliki akses? Hubungi administrator.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
