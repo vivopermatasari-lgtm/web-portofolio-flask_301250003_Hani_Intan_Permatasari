@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profil - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="container">
+        <h1 class="section-title">Edit Profil</h1>
+        <a href="{{ url_for('dashboard.index') }}" class="btn btn-secondary mb-md">← Kembali ke Dashboard</a>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }} mb-md">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data" class="form-container">
+            <div class="form-group">
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" id="name" name="name" class="form-input" value="{{ profile.name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="headline" class="form-label">Headline / Tagline</label>
+                <input type="text" id="headline" name="headline" class="form-input" value="{{ profile.headline or '' }}" placeholder="misal: Mahasiswa Informatika | Aspiring Web Developer">
+            </div>
+
+            <div class="form-group">
+                <label for="about" class="form-label">Tentang Saya</label>
+                <textarea id="about" name="about" class="form-textarea" rows="5">{{ profile.about or '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="photo" class="form-label">Foto Profil (PNG/JPG/JPEG/GIF/WEBP, max 5MB)</label>
+                <input type="file" id="photo" name="photo" class="form-input" accept=".png,.jpg,.jpeg,.gif,.webp">
+                {% if profile.photo_file and profile.photo_file != 'default.jpg' %}
+                    <div class="mt-xs">
+                        <img src="{{ url_for('static', filename='uploads/' ~ profile.photo_file) }}" alt="Current photo" class="profile-img-preview">
+                    </div>
+                {% else %}
+                    <div class="mt-xs">
+                        <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Default photo" class="profile-img-preview">
+                    </div>
+                {% endif %}
+                <small class="form-text">Biarkan kosong untuk tidak mengubah foto.</small>
+            </div>
+
+            <button type="submit" class="btn mt-md">Simpan Perubahan Profil</button>
+        </form>
+
+        <hr class="my-lg">
+
+        <h2 class="section-title">Keterampilan (Skill)</h2>
+        <form method="POST" action="{{ url_for('dashboard.add_skill') }}" class="form-inline mb-md">
+            <div class="form-group">
+                <input type="text" name="skill_name" class="form-input" placeholder="Nama skill (misal: React, Docker)" required>
+            </div>
+            <button type="submit" class="btn ml-sm">Tambah Skill</button>
+        </form>
+
+        {% if skills %}
+        <div class="skill-tags">
+            {% for skill in skills %}
+                <span class="skill-tag">
+                    {{ skill.name }}
+                    <form action="{{ url_for('dashboard.delete_skill', id=skill.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Hapus skill ini?');">
+                        <button type="submit" class="btn btn-sm btn-error ml-xs">×</button>
+                    </form>
+                </span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted">Belum ada skill yang ditambahkan.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

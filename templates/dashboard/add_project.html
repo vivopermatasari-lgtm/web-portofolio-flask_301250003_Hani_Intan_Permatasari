@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Tambah Proyek - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="container">
+        <h1 class="section-title">Tambah Proyek Baru</h1>
+        <a href="{{ url_for('dashboard.projects') }}" class="btn btn-secondary mb-md">← Kembali ke Daftar Proyek</a>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }} mb-md">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data" class="form-card">
+            <div class="form-group">
+                <label for="title" class="form-label">Judul Proyek *</label>
+                <input type="text" id="title" name="title" class="form-input" required placeholder="Masukkan judul proyek">
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="form-label">Deskripsi *</label>
+                <textarea id="description" name="description" class="form-input" rows="5" required placeholder="Deskripsi singkat tentang proyek"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="technologies" class="form-label">Teknologi yang Digunakan (pisahkan dengan koma)</label>
+                <input type="text" id="technologies" name="technologies" class="form-input" placeholder="Contoh: Python, Flask, HTML/CSS, JavaScript">
+            </div>
+
+            <div class="form-group">
+                <label for="github_link" class="form-label">Link GitHub (opsional)</label>
+                <input type="url" id="github_link" name="github_link" class="form-input" placeholder="https://github.com/username/repo">
+            </div>
+
+            <div class="form-group">
+                <label for="live_link" class="form-label">Link Live Demo (opsional)</label>
+                <input type="url" id="live_link" name="live_link" class="form-input" placeholder="https://example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="image" class="form-label">Gambar Thumbnail (PNG/JPG/JPEG/GIF/WEBP, max 5MB)</label>
+                <input type="file" id="image" name="image" class="form-input" accept=".png,.jpg,.jpeg,.gif,.webp">
+                <small class="form-text">Biarkan kosong untuk menggunakan gambar default.</small>
+            </div>
+
+            <button type="submit" class="btn mt-md">Simpan Proyek</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

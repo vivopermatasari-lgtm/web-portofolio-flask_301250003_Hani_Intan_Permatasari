@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Kelola Proyek - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="container">
+        <h1 class="section-title">Kelola Proyek</h1>
+        <a href="{{ url_for('dashboard.add_project') }}" class="btn mb-md">Tambah Proyek Baru</a>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }} mb-md">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if projects %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Judul</th>
+                    <th>Gambar</th>
+                    <th>Teknologi</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ project.title }}</td>
+                    <td>
+                        {% if project.image_file %}
+                        <img src="{{ url_for('static', filename='uploads/' ~ project.image_file) }}" alt="{{ project.title }}" class="project-img-sm">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="default" class="project-img-sm">
+                        {% endif %}
+                    </td>
+                    <td>{{ project.technologies or '-' }}</td>
+                    <td>{{ project.created_at.strftime('%d %b %Y') }}</td>
+                    <td>
+                        <a href="{{ url_for('dashboard.edit_project', id=project.id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                        <form action="{{ url_for('dashboard.delete_project', id=project.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus proyek ini?');">
+                            <button type="submit" class="btn btn-sm btn-error">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        {% if pagination.pages > 1 %}
+        <nav class="pagination mt-md">
+            {% if pagination.has_prev %}
+                <a href="{{ url_for('dashboard.projects', page=pagination.prev_num) }}" class="btn btn-sm">« Sebelumnya</a>
+            {% else %}
+                <span class="disabled">« Sebelumnya</span>
+            {% endif %}
+            <span>Halaman {{ pagination.page }} dari {{ pagination.pages }}</span>
+            {% if pagination.has_next %}
+                <a href="{{ url_for('dashboard.projects', page=pagination.next_num) }}" class="btn btn-sm">Selanjutnya »</a>
+            {% else %}
+                <span class="disabled">Selanjutnya »</span>
+            {% endif %}
+        </nav>
+        {% endif %}
+        {% else %}
+        <p class="text-center">Belum ada proyek. <a href="{{ url_for('dashboard.add_project') }}" class="btn">Tambah yang pertama</a></p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
