@@ -521,3 +521,21 @@ a:hover {
 .bg-primary { background-color: var(--color-primary); color: var(--color-light); }
 .bg-secondary { background-color: var(--color-secondary); color: var(--color-dark); }
 .bg-accent { background-color: var(--color-accent); color: var(--color-light); }
+
+/* Profile image styling */
+.profile-img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%; /* circle */
+    object-fit: cover;
+    display: block;
+}
+
+/* For dashboard preview */
+.profile-img-preview {
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
