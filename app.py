@@ -1,6 +1,6 @@
 from flask import Flask
 from config import Config
-from models import db
+from models import db, Profile
 from datetime import datetime
 
 def create_app(config_class=Config):
@@ -24,6 +24,17 @@ def create_app(config_class=Config):
     # Create database tables if they don't exist
     with app.app_context():
         db.create_all()
+
+        # Ensure a default profile exists
+        if Profile.query.first() is None:
+            default_profile = Profile(
+                name='Hani Intan Permatasari',
+                headline='Mahasiswa Informatika | Aspiring Web Developer',
+                about='Saya merupakan mahasiswa informatika yang antusias dalam pengembangan web menggunakan Flask dan teknologi terkait.',
+                photo_file='default.jpg'
+            )
+            db.session.add(default_profile)
+            db.session.commit()
 
     return app
 

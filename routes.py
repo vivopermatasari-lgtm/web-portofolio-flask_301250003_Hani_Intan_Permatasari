@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, current_app, request, flash, redirect, url_for
-from models import db, Message
+from models import db, Message, Profile
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    profile = Profile.query.first()
+    return render_template('index.html', profile=profile)
 
 @main.route('/about')
 def about():

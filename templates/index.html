@@ -6,10 +6,14 @@
 <header class="hero">
     <div class="container">
         <div class="hero-content">
-            <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil" class="profile-img">
-            <h1>Hani Intan Permatasari</h1>
-            <p class="tagline">Mahasiswa Informatika | Aspirant Web Developer</p>
-            <p class="about-short">Saya merupakan mahasiswa informatika yang antusias dalam pengembangan web menggunakan Flask dan teknologi terkait.</p>
+            {% if profile and profile.photo_file %}
+                <img src="{{ url_for('static', filename='uploads/' ~ profile.photo_file) }}" alt="Foto Profil" class="profile-img">
+            {% else %}
+                <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil" class="profile-img">
+            {% endif %}
+            <h1>{{ profile.name if profile else 'Hani Intan Permatasari' }}</h1>
+            <p class="tagline">{{ profile.headline if profile else 'Mahasiswa Informatika | Aspirant Web Developer' }}</p>
+            <p class="about-short">{{ profile.about if profile else 'Saya merupakan mahasiswa informatika yang antusias dalam pengembangan web menggunakan Flask dan teknologi terkait.' }}</p>
             <a href="{{ url_for('main.about') }}" class="btn">Tentang Saya</a>
         </div>
     </div>
@@ -17,7 +21,7 @@
 
 <section class="features">
     <div class="container">
-        <h2 class="section-title">Tentang Saya</h2>
+        <h2 class="section-title">Tentang Saya</h>
         <p>Singkat tentang latar belakang, minat, dan tujuan karier saya.</p>
         <a href="{{ url_for('main.about') }}" class="btn btn-secondary">Selengkapnya</a>
     </div>
