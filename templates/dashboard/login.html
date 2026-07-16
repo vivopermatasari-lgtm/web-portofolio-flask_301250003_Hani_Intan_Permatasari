@@ -14,7 +14,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <form method="POST" action="{{ url_for('login') }}">
+            <form method="POST" action="{{ url_for('dashboard.login') }}">
                 <div class="form-group">
                     <label for="username" class="form-label">Nama Pengguna</label>
                     <input type="text" id="username" name="username" class="form-input" required placeholder="Masukkan nama pengguna">

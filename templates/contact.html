@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Kontak - {{ config.SITE_NAME or 'Portofolio' }}{% endblock %}
+
+{% block content %}
+<section class="contact">
+    <div class="container">
+        <h2 class="section-title">Kontak Saya</h2>
+        <p>Anda dapat menghubungi saya melalui:</p>
+        <ul>
+            <li>Email: <a href="mailto:vivopermatasari@gmail.com">vivopermatasari@gmail.com</a></li>
+            <li>Phone: 082315574276</li>
+            <li>Alamat: JL. Manggahang II rt03/rw06 Kel. Manggahang Kec. Baleendah Kab. Bandung</li>
+        </ul>
+        <form action="#" method="post">
+            <div>
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="pesan">Pesan:</label>
+                <textarea id="pesan" name="pesan" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn mt-md">Kirim Pesan</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

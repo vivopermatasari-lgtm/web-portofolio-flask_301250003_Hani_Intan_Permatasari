@@ -43,14 +43,21 @@ def logout():
 @dashboard.route('/')
 @login_required
 def index():
-    # Placeholder stats - actual counts from DB
+    # Stats
     total_projects = Project.query.count()
     unread_messages = Message.query.filter_by(is_read=False).count()
-    visitors_today = 0  # placeholder; could be implemented with analytics
+    viewers_today = 0  # placeholder; could be implemented with analytics
+    # Recent data for dashboard overview
+    recent_projects = Project.query.order_by(Project.created_at.desc()).limit(5).all()
+    profile = Profile.query.first()
+    recent_messages = Message.query.order_by(Message.created_at.desc()).limit(5).all()
     return render_template('dashboard/index.html',
                            total_projects=total_projects,
                            unread_messages=unread_messages,
-                           visitors_today=visitors_today)
+                           visitors_today=viewers_today,
+                           recent_projects=recent_projects,
+                           profile=profile,
+                           recent_messages=recent_messages)
 
 # Helper for file upload
 def allowed_file(filename):

@@ -9,20 +9,71 @@
         <div class="dashboard-summary">
             <div class="summary-card">
                 <h3>Total Proyek</h3>
-                <p class="big-number">0</p>
+                <p class="big-number">{{ total_projects }}</p>
             </div>
             <div class="summary-card">
                 <h3>Pesan Belum Dibaca</h3>
-                <p class="big-number">0</p>
+                <p class="big-number">{{ unread_messages }}</p>
             </div>
             <div class="summary-card">
                 <h3>Pengunjung Hari Ini</h3>
-                <p class="big-number">0</p>
-            </p>
+                <p class="big-number">{{ visitors_today }}</p>
             </div>
         </div>
 
-        <div class="dashboard-nav">
+        {% if profile %}
+        <section class="profile-summary mt-md">
+            <h2 class="section-title">Profil Saya</h2>
+            <div class="profile-info">
+                {% if profile.photo_file and profile.photo_file != 'default.jpg' %}
+                <img src="{{ url_for('static', filename='uploads/' ~ profile.photo_file) }}" alt="Foto Profil" class="profile-img">
+                {% else %}
+                <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil" class="profile-img">
+                {% endif %}
+                <div>
+                    <h3>{{ profile.name }}</h3>
+                    <p class="tagline">{{ profile.headline }}</p>
+                    <p>{{ profile.about|truncate(100) }}</p>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if recent_projects %}
+        <section class="recent-projects mt-md">
+            <h2 class="section-title">Proyek Terbaru</h2>
+            <div class="projects-list">
+                {% for proj in recent_projects %}
+                <div class="project-item">
+                    <h4>{{ proj.title }}</h4>
+                    <p>{{ proj.description|truncate(100) }}</p>
+                    {% if proj.technologies %}
+                    <span class="badge badge-info">{{ proj.technologies.split(',')[0] }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('dashboard.projects') }}" class="btn mt-sm">Lihat Semua Proyek</a>
+        </section>
+        {% endif %}
+
+        {% if recent_messages %}
+        <section class="recent-messages mt-md">
+            <h2 class="section-title">Pesan Terbaru</h2>
+            <div class="messages-list">
+                {% for msg in recent_messages %}
+                <div class="message-item{% if not msg.is_read %} unread{% endif %}">
+                    <strong>{{ msg.name }}</strong> <span class="text-muted">{{ msg.email }}</span>
+                    <p>{{ msg.message|truncate(100) }}</p>
+                    <small class="text-muted">{{ msg.created_at.strftime('%d %b %Y %H:%M') }}</small>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('dashboard.messages') }}" class="btn mt-sm">Lihat Semua Pesan</a>
+        </section>
+        {% endif %}
+
+        <div class="dashboard-nav mt-lg">
             <a href="{{ url_for('dashboard.projects') }}" class="nav-btn">Kelola Proyek</a>
             <a href="{{ url_for('dashboard.profile') }}" class="nav-btn">Edit Profil</a>
             <a href="{{ url_for('dashboard.messages') }}" class="nav-btn">Kotak Masuk</a>
