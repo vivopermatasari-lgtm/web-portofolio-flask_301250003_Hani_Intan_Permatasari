@@ -524,8 +524,8 @@ a:hover {
 
 /* Profile image styling */
 .profile-img {
-    max-width: 200px;
-    height: auto;
+    width: 200px;
+    height: 200px;
     border-radius: 50%; /* circle */
     object-fit: cover;
     display: block;
@@ -533,8 +533,8 @@ a:hover {
 
 /* For dashboard preview */
 .profile-img-preview {
-    max-width: 150px;
-    height: auto;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
