@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, current_app, request, flash, redirect, url_for
-from models import db, Message, Profile
+from models import db, Message, Profile, Project
 
 main = Blueprint('main', __name__)
 
@@ -15,7 +15,8 @@ def about():
 
 @main.route('/portfolio')
 def portfolio():
-    return render_template('portfolio.html')
+    projects = Project.query.order_by(Project.created_at.desc()).all()
+    return render_template('portfolio.html', projects=projects)
 
 @main.route('/contact', methods=['GET', 'POST'])
 def contact():
