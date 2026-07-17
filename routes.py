@@ -10,7 +10,8 @@ def index():
 
 @main.route('/about')
 def about():
-    return render_template('about.html')
+    profile = Profile.query.first()
+    return render_template('about.html', profile=profile)
 
 @main.route('/portfolio')
 def portfolio():

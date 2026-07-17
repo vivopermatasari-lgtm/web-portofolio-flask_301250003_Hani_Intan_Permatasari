@@ -306,8 +306,8 @@ a:hover {
     margin: 0 auto;
 }
 .hero .profile-img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: var(--radius-circle);
     object-fit: cover;
     margin-bottom: var(--space-md);

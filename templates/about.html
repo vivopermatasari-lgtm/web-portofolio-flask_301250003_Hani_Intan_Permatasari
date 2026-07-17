@@ -7,7 +7,7 @@
     <div class="container">
         <h2 class="section-title">Tentang Saya</h2>
         <div class="about-content">
-            <img src="{{ url_for('static', filename='uploads/default.jpg') }}" alt="Foto Profil" class="profile-img about-img">
+            <img src="{{ url_for('static', filename='uploads/' ~ (profile.photo_file if profile and profile.photo_file else 'default.jpg') ) }}" alt="Foto Profil" class="profile-img about-img">
             <div class="about-text">
                 <p>Hai, nama saya <strong>Hani Intan Permatasari</strong>. Saya adalah mahasiswa Informatika yang saat ini sedang menempuh pendidikan di tingkat sarjana. Minat saya berada di bidang pengembangan web, khususnya menggunakan framework Flask untuk membangun aplikasi web yang dinamis dan responsif.</p>
                 <p>Selain pemrograman, saya juga senang belajar tentang desain UI/UX, basis data, dan teknologi terkait. Saya percaya bahwa kombinasi antara logika pemrograman dan estetika desain dapat menciptakan pengalaman pengguna yang baik.</p>
